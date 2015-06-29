@@ -13,7 +13,7 @@ def index(request):
 
 def isvalidemail(request):
     email = request.GET.get('email');
-    apiKey = request.GET.get('apiKey');
+    apiKey = request.GET.get('apikey');
 
     url = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + apiKey
     jsonData = json.load(urllib2.urlopen( url ))
