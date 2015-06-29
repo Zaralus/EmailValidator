@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block head %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+<script src="{% static "permutations.js" %}"></script>
+<script src="{% static "mailValidator.js" %}></script>
+
+<script type="text/javascript" src="/site_media/prototype.js"></script>
+<script type="text/javascript" src="/site_media/my_ajax_function.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div>
+	<label for="apiKey">API Key</label>
+	<input type="text" name="apiKey" id="apiKey" size="60" value="1c9ff601669a302ac3421fb609cf0bbc5e442471f14049b15714712dfd9b"/>
+</div>
+<hr />
+<div id=inputs class=clearfix>
+  <input type=file id=files name=files[] multiple />
+</div>
+<hr />
+<output id=list>
+</output>
+<hr />
+<input type="button" id="startButton" value="Execute Batch" />
+<!--
+<div>
+	<label for="emailPermutations">Email Permutations</label>
+</div>
+<textarea rows="8" cols="50" name="emailPermutations"></textarea>-->
+
+{% endblock %}
