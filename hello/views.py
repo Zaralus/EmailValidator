@@ -10,11 +10,11 @@ def index(request):
     # return HttpResponse('Hello from Python!')
     return render(request, 'index.html')
 
-def isValidEmail(request):
+def isvalidemail(request):
     email = request.GET.get('email');
     apiKey = request.GET.get('apiKey');
 
-    url = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + self.apiKey
+    url = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + apiKey
     jsonData = json.load(urllib2.urlopen( url ))
     return JsonResponse(jsonData)
 
