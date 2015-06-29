@@ -4,6 +4,7 @@ from django.http import JsonResponse
 
 from .models import Greeting
 import urllib2
+import json
 
 # Create your views here.
 def index(request):
