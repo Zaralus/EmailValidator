@@ -109,11 +109,9 @@ function isValidEmail( email ) {
 		return false;
     })
 */
-/*
-	script.src = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + apiKey;
 	
 	var xmlhttp = new XMLHttpRequest();
-	var url = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + apiKey;
+	var url = "https://gentle-sierra-2295.herokuapp.com/isvalidemail?email=" + email + "&apikey=" + apiKey;
 
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -128,9 +126,7 @@ function isValidEmail( email ) {
 	
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
-	*/
 	
-	return true;
 }
   
 function processInputCSV( evt ) {
