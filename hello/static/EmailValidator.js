@@ -95,20 +95,6 @@ function outputCSV( data ) {
 }
 
 function isValidEmail( email ) {
-
-/*
-	var qevRequest = qev.client(apiKey).quickemailverification();
-
-    qevRequest.verify(email, function (err, response) {
-		var jsonData = JSON.parse(response.body);
-		console.log(response.body);
-		alert(jsonData.result);
-		if (jsonData.result == "valid") {
-			return true;
-		}
-		return false;
-    })
-*/
 	
 	var xmlhttp = new XMLHttpRequest();
 	var url = "https://gentle-sierra-2295.herokuapp.com/isvalidemail?email=" + email + "&apikey=" + apiKey;
@@ -118,7 +104,6 @@ function isValidEmail( email ) {
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var jsonData = JSON.parse(xmlhttp.responseText);
-			alert(jsonData.result);
 			if (jsonData.result == "valid") {
 				result = true;
 			}
@@ -128,7 +113,6 @@ function isValidEmail( email ) {
 	xmlhttp.open("GET", url, false);
 	xmlhttp.send();
 	
-	alert(result);
 	return result;
 }
   
