@@ -116,7 +116,9 @@ function isValidEmail( email ) {
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var jsonData = JSON.parse(xmlhttp.responseText);
+			alert(jsonData.result);
 			if (jsonData.result == "valid") {
+				alert("true");
 				return true;
 			}
 			return false;
