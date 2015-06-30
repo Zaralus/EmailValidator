@@ -135,7 +135,7 @@ function processInputCSV( evt ) {
 	  
 		for (var row in data) {
 		
-			var currProgress = Math.round(row / data.length);
+			var currProgress = Math.round((row / data.length) * 100);
 			updateProgressBar( currProgress );
 		
 			// Skip header row of input CSV file
