@@ -115,6 +115,12 @@ function isValidEmail( email ) {
 	
 	return result;
 }
+
+function updateProgressBar( value ) {
+	$("#status").attr("aria-valuenow", value.toString());
+	$("#status").attr("style", "width:" + value.toString() + "%");
+	$("#status").html(value.toString() + "% Complete");
+}
   
 function processInputCSV( evt ) {
 
@@ -128,6 +134,9 @@ function processInputCSV( evt ) {
 		var data = $.csv.toArrays(csv);
 	  
 		for (var row in data) {
+		
+			var currProgress = Math.round(row / data.length);
+			updateProgressBar( currProgress );
 		
 			// Skip header row of input CSV file
 			if (row == 0) {
