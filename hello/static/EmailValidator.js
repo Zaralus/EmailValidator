@@ -170,7 +170,7 @@ function processPerson( rawPerson ) {
 		for (var j in perms) {
 		
 			// Deal with first names containing white space
-			if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > 0) ){
+			if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > -1) ){
 				firstNamePoss.push( person.fn.replace(' ','.') );
 				firstNamePoss.push( person.fn.replace(' ','-') );
 				firstNamePoss.push( person.fn.replace(' ','_') );
@@ -181,7 +181,7 @@ function processPerson( rawPerson ) {
 			}
 			
 			// Deal with last names containing white space
-			if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > 0) ){
+			if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > -1) ){
 				lastNamePoss.push( person.ln.replace(' ','.') );
 				lastNamePoss.push( person.ln.replace(' ','-') );
 				lastNamePoss.push( person.ln.replace(' ','_') );
