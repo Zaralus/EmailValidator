@@ -16,7 +16,8 @@
 <h1>Email Verification Application</h1>
 
 <p> This app allows you to manage your api key, do single person email verification, or do bulk person
-email verification through use of CSV file.
+email verification through use of CSV file. You can always click the "Home" button at the top of the page
+to return to this page.
 </p>
 
 <h2 class="text-warning">API Key Maintenance</h2>
@@ -24,12 +25,14 @@ email verification through use of CSV file.
 	<form role="form" class="form-horizontal" action="{% url 'index' %}" method="post">
 		{% csrf_token %}
 		<p>This button will save the API Key entered as the default key to use.</p>
-		<label class="control-label col-sm-2" for="apiKey">API Key</label>
-		<div class="col-sm-8">
-			<input type="text" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
-		</div>
-		<div class="col-sm-2">
-			<input class="btn btn-primary" type="submit" value="Save As Default API Key">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="apiKey">API Key</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
+			</div>
+			<div class="col-sm-2">
+				<input class="form-control btn btn-primary" type="submit" value="Save As Default API Key">
+			</div>
 		</div>
 	</form>
 </div>
