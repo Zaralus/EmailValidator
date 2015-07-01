@@ -142,15 +142,15 @@ function processPerson( rawPerson ) {
 	apiKey = $("#apiKey").val();
 
 	var person = {};
-	person.fn = rawPerson.firstName.toLowerCase();;
+	person.fn = rawPerson.firstName.toLowerCase();
 	person.fi = person.fn.substr(0,1);
 	person.mn = '';
 	person.mi = '';
-	person.ln = rawPerson.lastName.toLowerCase();;
+	person.ln = rawPerson.lastName.toLowerCase();
 	person.li = person.ln.substr(0,1);
 	person.domains = ['gmail.com']
 	if (rawPerson.domain) {
-		person.domains.push(rawPerson.domain.toLowerCase(););
+		person.domains.push(rawPerson.domain.toLowerCase());
 	}
 			
 	var foundValidEmail = false;
