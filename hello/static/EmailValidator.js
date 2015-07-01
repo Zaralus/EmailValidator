@@ -164,12 +164,13 @@ function processPerson( rawPerson ) {
 	var firstNamePoss = [];
 	var lastNamePoss = [];
 	for (var i in person.domains) {
+		var 
 		var currDomain = person.domains[i];
 				
 		for (var j in perms) {
 		
 			// Deal with first names containing white space
-			if (hasWhiteSpace(person.fn)){
+			if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > 0) ){
 				firstNamePoss.push( person.fn.replace(' ','.') );
 				firstNamePoss.push( person.fn.replace(' ','-') );
 				firstNamePoss.push( person.fn.replace(' ','_') );
@@ -180,7 +181,7 @@ function processPerson( rawPerson ) {
 			}
 			
 			// Deal with last names containing white space
-			if (hasWhiteSpace(person.ln)){
+			if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > 0) ){
 				lastNamePoss.push( person.ln.replace(' ','.') );
 				lastNamePoss.push( person.ln.replace(' ','-') );
 				lastNamePoss.push( person.ln.replace(' ','_') );
@@ -202,6 +203,7 @@ function processPerson( rawPerson ) {
 					email = email.replace('{ln}', lastName)
 					email = email.replace('{li}', person.li)
 					email = email + '@' + currDomain;
+							
 					if ( isValidEmail(email) ) {
 						foundValidEmail = true;
 						currOutputData.push([person.fn, person.ln, currDomain, email]);
