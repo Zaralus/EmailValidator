@@ -13,7 +13,7 @@
 {% if error_message %}<div class="alert alert-danger"><strong>{{ error_message }}</strong></div>{% endif %}
 {% if success_message %}<div class="alert alert-success"><strong>{{ success_message }}</strong></div>{% endif %}
 
-<h1>Email Verification Application"</h1>
+<h1>Email Verification Application</h1>
 
 <p> This app allows you to manage your api key, do single person email verification, or do bulk person
 email verification through use of CSV file.
@@ -24,11 +24,11 @@ email verification through use of CSV file.
 	<form role="form" class="form-horizontal" action="{% url 'index' %}" method="post">
 		{% csrf_token %}
 		<p>This button will save the API Key entered as the default key to use.</p>
-		<label class="control-label col-sm-2" for="apiKey">API Key</label>
-		<div class="control-label col-sm-7">
+		<label class="control-label col-sm-1" for="apiKey">API Key</label>
+		<div class="control-label col-sm-9">
 			<input type="text" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
 		</div>
-		<div class="control-label col-sm-3">
+		<div class="control-label col-sm-2">
 			<input class="btn btn-primary" type="submit" value="Save As Default API Key">
 		</div>
 	</form>
