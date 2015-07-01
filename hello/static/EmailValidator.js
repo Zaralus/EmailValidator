@@ -212,7 +212,7 @@ function processInputCSV( evt ) {
 			rawPerson.domain = data[row][2].trim();
 			currOutputData = processPerson( rawPerson );
 			
-			outputData.extend(currOutputData);
+			Array.prototype.push.apply(outputData, currOutputData);
 		
 			// Write blank row between each person
 			outputData.push(['', '', '', '']);
