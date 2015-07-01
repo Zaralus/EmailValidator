@@ -111,15 +111,18 @@ function isValidEmail( email ) {
 	}
 	
 	xmlhttp.open("GET", url, false);
-	//xmlhttp.send();
+	xmlhttp.send();
 	
-	//return result;
+	return result;
+	
+	/* For  load testing only
 	if (Math.random() < 0.2) {
 		return true;
 	}
 	else {
 		return false;
 	}
+	*/
 }
 
 function updateProgressBar( value ) {
