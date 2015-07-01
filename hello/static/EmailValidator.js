@@ -144,14 +144,14 @@ function processInputCSV( evt ) {
 			}
 		
 			var person = {};
-			person.fn = data[row][0];
+			person.fn = data[row][0].trim();
 			person.fi = person.fn.substr(0,1);
 			person.mn = '';
 			person.mi = '';
-			person.ln = data[row][1];
+			person.ln = data[row][1].trim();
 			person.li = person.ln.substr(0,1);
 			person.domains = ['gmail.com']
-			if (data[row][2]) {
+			if (data[row][2].trim()) {
 				person.domains.push(data[row][2]);
 			}
 			

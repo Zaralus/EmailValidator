@@ -8,8 +8,35 @@ import json
 
 # Create your views here.
 def index(request):
-    # return HttpResponse('Hello from Python!')
-    return render(request, 'index.html')
+
+    parms = {}
+    
+    apiKey = None
+
+    # Check if we are saving api key
+    try:
+        apiKey = request.POST['apiKey']
+    except KeyError:
+        # Ignore, means we are not saving apiKey at this time.
+        
+    if (apiKey):
+        with open('apiKey.txt','w') as f:
+            f.write(apiKey)
+            parms['success_message'] = "API Key saved successfully."
+    else:
+        with open('apiKey.txt','r') as f:
+            apiKey = f.read(apiKey)
+
+    parms['apiKey'] = apiKey
+    
+    return render(request, 'index.html', parms)
+    
+
+def bulkprocess(request):
+    return render(request, 'bulkProcess.html')
+
+def singleprocess(request):
+    return render(request, 'singleProcess.html')
 
 def isvalidemail(request):
     email = request.GET.get('email');

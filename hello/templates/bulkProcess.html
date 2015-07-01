@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+
+<script src="https://jquery-csv.googlecode.com/git/src/jquery.csv.js"></script>
+<script src="/static/permutations.js"></script>
+<script src="/static/EmailValidator.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<div>
+	<label for="apiKey">API Key</label>
+	<input type="text" name="apiKey" id="apiKey" size="70" value="1c9ff601669a302ac3421fb609cf0bbc5e442471f14049b15714712dfd9b"/>
+</div>
+<hr />
+<div id=inputs class=clearfix>
+  <input type=file id=files name=files[] multiple />
+</div>
+<hr />
+<output id=list>
+</output>
+<hr />
+<input type="button" id="startButton" value="Execute Batch" />
+<hr />
+<div class="progress">
+  <div id="status" class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="0"
+  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+    0% Complete (success)
+  </div>
+</div>
+
+<!--
+<div>
+	<label for="emailPermutations">Email Permutations</label>
+</div>
+<textarea rows="8" cols="50" name="emailPermutations"></textarea>-->
+
+{% endblock %}
