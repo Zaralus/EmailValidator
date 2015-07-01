@@ -167,7 +167,7 @@ function processPerson( rawPerson ) {
 			email = email + '@' + currDomain;
 			if ( isValidEmail(email) ) {
 				foundValidEmail = true;
-				outputData.push([data[row][0], data[row][1], currDomain, email]);
+				outputData.push(person.fn, person.ln, currDomain, email]);
 			}
 		}
 	}
@@ -177,7 +177,7 @@ function processPerson( rawPerson ) {
 	}
 	else {
 		// No valid email found so write in person with 'N/A'
-		outputData.push([data[row][0], data[row][1], data[row][2], 'N/A']);
+		outputData.push(person.fn, person.ln, rawPerson.domain, 'N/A']);
 	}
 	
 	return outputData;
