@@ -59,6 +59,7 @@ function isAPIAvailable() {
   */
 
 function handleFileSelect(evt) {
+
     var files = evt.target.files; // FileList object
     file = files[0];
 
@@ -69,10 +70,8 @@ function handleFileSelect(evt) {
         output += ' - FileSize: ' + file.size + ' bytes<br />\n';
         output += ' - LastModified: ' + (file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() : 'n/a') + '<br />\n';
 
-    // read the file contents
-    // processInputCSV(file);
-
-    // post the results
+    // clear old results and post the new results
+	$('#list').html('');
     $('#list').append(output);
 }
   
