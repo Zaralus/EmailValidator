@@ -19,14 +19,14 @@ def index(request):
     except KeyError:
         # Ignore, means we are not saving apiKey at this time.
         pass
-        
+
+    keyObj = APIKey.objects.filter(id=1)
     if (apiKey):
-        with open('apiKey.txt','w') as f:
-            f.write(apiKey)
-            parms['success_message'] = "API Key saved successfully."
+        keyObj.key = apiKey
+        keyObj.save()
+        parms['success_message'] = "API Key saved successfully."
     else:
-        with open('apiKey.txt','r') as f:
-            apiKey = f.read(apiKey)
+        apiKey = keyObj.key
 
     parms['apiKey'] = apiKey
     

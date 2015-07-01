@@ -11,3 +11,6 @@ class Person(models.Model):
 
 class Greeting(models.Model):
     when = models.DateTimeField('date created', auto_now_add=True)
+
+class APIKey(models.Model):
+    key = models.CharField(max_length=150)
