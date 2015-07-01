@@ -16,7 +16,7 @@
 <hr />
 <div>
 	<p>Enter details for a person then click "Find Emails"</p>
-	<form role="form" class="form-horizontal" action="{% url 'singleProcess' %}" method="post">
+	<form role="form" class="form-horizontal" action="{% url 'singleprocess' %}" method="post">
 		{% csrf_token %} 
 		
 		<label class="control-label col-sm-2" for="firstName">First Name: </label>
