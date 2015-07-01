@@ -18,6 +18,7 @@ def index(request):
         apiKey = request.POST['apiKey']
     except KeyError:
         # Ignore, means we are not saving apiKey at this time.
+        pass
         
     if (apiKey):
         with open('apiKey.txt','w') as f:
