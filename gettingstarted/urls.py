@@ -13,8 +13,8 @@ urlpatterns = patterns('',
     url(r'^$', hello.views.index, name='index'),
     url(r'^db', hello.views.db, name='db'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^isvalidemail/', hello.views.isvalidemail, name='isvalidemail')
-    url(r'^bulkprocess/', hello.views.bulkprocess, name='bulkprocess')
+    url(r'^isvalidemail/', hello.views.isvalidemail, name='isvalidemail'),
+    url(r'^bulkprocess/', hello.views.bulkprocess, name='bulkprocess'),
     url(r'^singleprocess/', hello.views.singleprocess, name='singleprocess')
 
 )
