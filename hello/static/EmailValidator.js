@@ -114,7 +114,12 @@ function isValidEmail( email ) {
 	//xmlhttp.send();
 	
 	//return result;
-	return true;
+	if (Math.random() < 0.2) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 function updateProgressBar( value ) {
