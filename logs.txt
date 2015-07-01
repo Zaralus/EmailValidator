@@ -1,0 +1,93 @@
+2015-07-01T18:27:30.821526+00:00 app[web.1]:     import_module('%s.%s' % (app_config.name, module_to_search))
+2015-07-01T18:27:30.821528+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2015-07-01T18:27:30.821540+00:00 app[web.1]:   File "/app/hello/admin.py", line 4, in <module>
+2015-07-01T18:27:30.821530+00:00 app[web.1]:     __import__(name)
+2015-07-01T18:27:30.821543+00:00 app[web.1]: NameError: name 'APIKey' is not defined
+2015-07-01T18:27:30.821542+00:00 app[web.1]:     admin.site.register(APIKey)
+2015-07-01T18:27:30.828782+00:00 app[web.1]: [2015-07-01 18:27:30 +0000] [10] [INFO] Worker exiting (pid: 10)
+2015-07-01T18:27:31.080947+00:00 app[web.1]: [2015-07-01 18:27:31 +0000] [9] [ERROR] Exception in worker process:
+2015-07-01T18:27:31.080959+00:00 app[web.1]:     worker.init_process()
+2015-07-01T18:27:31.080958+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+2015-07-01T18:27:31.080956+00:00 app[web.1]: Traceback (most recent call last):
+2015-07-01T18:27:31.080960+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+2015-07-01T18:27:31.080963+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2015-07-01T18:27:31.080964+00:00 app[web.1]:     self.callable = self.load()
+2015-07-01T18:27:31.080967+00:00 app[web.1]:     return self.load_wsgiapp()
+2015-07-01T18:27:31.080965+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2015-07-01T18:27:31.080962+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2015-07-01T18:27:31.080968+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2015-07-01T18:27:31.080969+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2015-07-01T18:27:31.080970+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+2015-07-01T18:27:31.080971+00:00 app[web.1]:     __import__(module)
+2015-07-01T18:27:31.080987+00:00 app[web.1]:     application = get_wsgi_application()
+2015-07-01T18:27:31.080973+00:00 app[web.1]:   File "/app/gettingstarted/wsgi.py", line 16, in <module>
+2015-07-01T18:27:31.080989+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+2015-07-01T18:27:31.080991+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+2015-07-01T18:27:31.080992+00:00 app[web.1]:     apps.populate(settings.INSTALLED_APPS)
+2015-07-01T18:27:31.080990+00:00 app[web.1]:     django.setup()
+2015-07-01T18:27:31.080994+00:00 app[web.1]:     app_config.ready()
+2015-07-01T18:27:31.080993+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/registry.py", line 115, in populate
+2015-07-01T18:27:31.080996+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/admin/apps.py", line 22, in ready
+2015-07-01T18:27:31.080997+00:00 app[web.1]:     self.module.autodiscover()
+2015-07-01T18:27:31.080998+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/admin/__init__.py", line 24, in autodiscover
+2015-07-01T18:27:31.080999+00:00 app[web.1]:     autodiscover_modules('admin', register_to=site)
+2015-07-01T18:27:31.081002+00:00 app[web.1]:     import_module('%s.%s' % (app_config.name, module_to_search))
+2015-07-01T18:27:31.081003+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2015-07-01T18:27:31.081004+00:00 app[web.1]:     __import__(name)
+2015-07-01T18:27:31.081005+00:00 app[web.1]:   File "/app/hello/admin.py", line 4, in <module>
+2015-07-01T18:27:31.081006+00:00 app[web.1]:     admin.site.register(APIKey)
+2015-07-01T18:27:31.081000+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/utils/module_loading.py", line 74, in autodiscover_modules
+2015-07-01T18:27:31.081007+00:00 app[web.1]: NameError: name 'APIKey' is not defined
+2015-07-01T18:27:31.081011+00:00 app[web.1]:     worker.init_process()
+2015-07-01T18:27:31.081010+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+2015-07-01T18:27:31.081009+00:00 app[web.1]: Traceback (most recent call last):
+2015-07-01T18:27:31.081012+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+2015-07-01T18:27:31.081013+00:00 app[web.1]:     self.wsgi = self.app.wsgi()
+2015-07-01T18:27:31.081015+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+2015-07-01T18:27:31.081016+00:00 app[web.1]:     self.callable = self.load()
+2015-07-01T18:27:31.081018+00:00 app[web.1]:     return self.load_wsgiapp()
+2015-07-01T18:27:31.081017+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+2015-07-01T18:27:31.081019+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+2015-07-01T18:27:31.081039+00:00 app[web.1]:   File "/app/gettingstarted/wsgi.py", line 16, in <module>
+2015-07-01T18:27:31.081036+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+2015-07-01T18:27:31.081040+00:00 app[web.1]:     application = get_wsgi_application()
+2015-07-01T18:27:31.081038+00:00 app[web.1]:     __import__(module)
+2015-07-01T18:27:31.081020+00:00 app[web.1]:     return util.import_app(self.app_uri)
+2015-07-01T18:27:31.081041+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+2015-07-01T18:27:31.081042+00:00 app[web.1]:     django.setup()
+2015-07-01T18:27:31.081043+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+2015-07-01T18:27:31.081045+00:00 app[web.1]:     apps.populate(settings.INSTALLED_APPS)
+2015-07-01T18:27:31.081046+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/apps/registry.py", line 115, in populate
+2015-07-01T18:27:31.081049+00:00 app[web.1]:     self.module.autodiscover()
+2015-07-01T18:27:31.081048+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/admin/apps.py", line 22, in ready
+2015-07-01T18:27:31.081047+00:00 app[web.1]:     app_config.ready()
+2015-07-01T18:27:31.081067+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/contrib/admin/__init__.py", line 24, in autodiscover
+2015-07-01T18:27:31.081068+00:00 app[web.1]:     autodiscover_modules('admin', register_to=site)
+2015-07-01T18:27:31.081070+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/django/utils/module_loading.py", line 74, in autodiscover_modules
+2015-07-01T18:27:31.081072+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/importlib/__init__.py", line 37, in import_module
+2015-07-01T18:27:31.081071+00:00 app[web.1]:     import_module('%s.%s' % (app_config.name, module_to_search))
+2015-07-01T18:27:31.081081+00:00 app[web.1]:   File "/app/hello/admin.py", line 4, in <module>
+2015-07-01T18:27:31.081073+00:00 app[web.1]:     __import__(name)
+2015-07-01T18:27:31.081082+00:00 app[web.1]:     admin.site.register(APIKey)
+2015-07-01T18:27:31.081083+00:00 app[web.1]: NameError: name 'APIKey' is not defined
+2015-07-01T18:27:31.081084+00:00 app[web.1]: [2015-07-01 18:27:31 +0000] [9] [INFO] Worker exiting (pid: 9)
+2015-07-01T18:27:31.141550+00:00 app[web.1]: Traceback (most recent call last):
+2015-07-01T18:27:31.141695+00:00 app[web.1]:     sys.exit(run())
+2015-07-01T18:27:31.141588+00:00 app[web.1]:   File "/app/.heroku/python/bin/gunicorn", line 11, in <module>
+2015-07-01T18:27:31.141743+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+2015-07-01T18:27:31.141812+00:00 app[web.1]:     WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+2015-07-01T18:27:31.141943+00:00 app[web.1]:     super(Application, self).run()
+2015-07-01T18:27:31.141846+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+2015-07-01T18:27:31.142042+00:00 app[web.1]:     Arbiter(self).run()
+2015-07-01T18:27:31.141978+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+2015-07-01T18:27:31.142074+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 201, in run
+2015-07-01T18:27:31.142152+00:00 app[web.1]:     self.halt(reason=inst.reason, exit_status=inst.exit_status)
+2015-07-01T18:27:31.142185+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 297, in halt
+2015-07-01T18:27:31.142270+00:00 app[web.1]:     self.stop()
+2015-07-01T18:27:31.142325+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 342, in stop
+2015-07-01T18:27:31.142423+00:00 app[web.1]:     time.sleep(0.1)
+2015-07-01T18:27:31.142457+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+2015-07-01T18:27:31.142535+00:00 app[web.1]:     self.reap_workers()
+2015-07-01T18:27:31.142567+00:00 app[web.1]:   File "/app/.heroku/python/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+2015-07-01T18:27:31.142816+00:00 app[web.1]: gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+2015-07-01T18:27:31.142675+00:00 app[web.1]:     raise HaltServer(reason, self.WORKER_BOOT_ERROR)

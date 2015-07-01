@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 
 from .models import Greeting
+from .models import APIKey
+
 import urllib2
 import json
 
