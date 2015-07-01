@@ -22,7 +22,7 @@ def index(request):
         # Ignore, means we are not saving apiKey at this time.
         pass
 
-    keyObj = APIKey.objects.filter(id=1)
+    keyObj = APIKey.objects.get(id=1)
     if (apiKey):
         keyObj.key = apiKey
         keyObj.save()
