@@ -120,7 +120,7 @@ function isValidEmail( email ) {
 function updateProgressBar( value ) {
 	$("#status").attr("aria-valuenow", value.toString());
 	$("#status").attr("style", "width:" + value.toString() + "%");
-	$("#status").html(value.toString() + "% Complete");
+	$("#status").text(value.toString() + "% Complete");
 }
 
 function processSinglePerson( evt ) {
@@ -140,6 +140,8 @@ function processPerson( rawPerson ) {
 
 	// Load API Key
 	apiKey = $("#apiKey").val();
+	
+	var currOutputData = [];
 
 	var person = {};
 	person.fn = rawPerson.firstName.toLowerCase();
@@ -167,28 +169,20 @@ function processPerson( rawPerson ) {
 			email = email + '@' + currDomain;
 			if ( isValidEmail(email) ) {
 				foundValidEmail = true;
-				outputData.push([person.fn, person.ln, currDomain, email]);
+				currOutputData.push([person.fn, person.ln, currDomain, email]);
 			}
 		}
 	}
 			
-	if (foundValidEmail) {
-		foundValidEmail = false;
-	}
-	else {
+	if (!foundValidEmail) {
 		// No valid email found so write in person with 'N/A'
-		outputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase(), 'N/A']);
+		currOutputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase(), 'N/A']);
 	}
 	
-	return outputData;
+	return currOutputData;
 }
   
 function processInputCSV( evt ) {
-
-	// Load API Key
-	apiKey = $("#apiKey").val();
-	
-	outputData = [];
 	
     var reader = new FileReader();
     reader.readAsText(file);
@@ -210,7 +204,7 @@ function processInputCSV( evt ) {
 			rawPerson.firstName = data[row][0].trim();
 			rawPerson.lastName = data[row][1].trim();
 			rawPerson.domain = data[row][2].trim();
-			currOutputData = processPerson( rawPerson );
+			var currOutputData = processPerson( rawPerson );
 			
 			Array.prototype.push.apply(outputData, currOutputData);
 		
