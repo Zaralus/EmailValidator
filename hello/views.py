@@ -36,7 +36,12 @@ def index(request):
     
 
 def bulkprocess(request):
-    return render(request, 'bulkProcess.html')
+    parms = {}
+    
+    keyObj = APIKey.objects.get(id=1)
+    parms['apiKey'] = keyObj.key
+    
+    return render(request, 'bulkProcess.html', parms)
 
 def singleprocess(request):
     return render(request, 'singleProcess.html')

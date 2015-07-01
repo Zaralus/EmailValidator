@@ -11,25 +11,37 @@
 {% block content %}
 
 <div>
-	<label for="apiKey">API Key</label>
-	<input type="text" name="apiKey" id="apiKey" size="70" value="1c9ff601669a302ac3421fb609cf0bbc5e442471f14049b15714712dfd9b"/>
+	<p><span><strong>API Key: </strong></span><span class="text-primary">{{apiKey}}</span></p>
 </div>
 <hr />
-<div id=inputs class=clearfix>
-  <input type=file id=files name=files[] multiple />
+<div>
+	<p>Enter details for a person then click "Find Emails"</p>
+	<form role="form" class="form-horizontal" action="{% url 'singleProcess' %}" method="post">
+		{% csrf_token %} 
+		
+		<label class="control-label col-sm-2" for="firstName">First Name: </label>
+		<div class="control-label col-sm-10">
+			<input class="form-control" type="text" id="firstName" placeholder="John"/>
+		</div>
+		
+		<label class="control-label col-sm-2" for="lastName">Last Name: </label>
+		<div class="control-label col-sm-10">
+			<input class="form-control" type="text" id="lastName" placeholder="Smith"/>
+		</div>
+		
+		<label class="control-label col-sm-2" for="domain">Domain: </label>
+		<div class="control-label col-sm-10">
+			<input class="form-control" type="text" id="domain" placeholder="yahoo.com"/>
+		</div>
+		
+		<input class="btn btn-primary" type="submit" value="Find Emails">
+	</form>
 </div>
 <hr />
-<output id=list>
-</output>
-<hr />
-<input type="button" id="startButton" value="Execute Batch" />
-<hr />
-<div class="progress">
-  <div id="status" class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="0"
-  aria-valuemin="0" aria-valuemax="100" style="width:0%">
-    0% Complete (success)
-  </div>
+<div id="results">
+
 </div>
+
 
 <!--
 <div>
