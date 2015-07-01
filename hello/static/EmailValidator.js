@@ -177,7 +177,7 @@ function processPerson( rawPerson ) {
 	}
 	else {
 		// No valid email found so write in person with 'N/A'
-		outputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase();, 'N/A']);
+		outputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase(), 'N/A']);
 	}
 	
 	return outputData;
