@@ -24,21 +24,22 @@
 		<input type="hidden" id="apiKey" value="{{apiKey}}"></input>
 		
 		<label class="control-label col-sm-2" for="firstName">First Name: </label>
-		<div class="control-label col-sm-10">
+		<div class="col-sm-10">
 			<input class="form-control" type="text" id="firstName" placeholder="John"/>
 		</div>
 		
 		<label class="control-label col-sm-2" for="lastName">Last Name: </label>
-		<div class="control-label col-sm-10">
+		<div class="col-sm-10">
 			<input class="form-control" type="text" id="lastName" placeholder="Smith"/>
 		</div>
 		
 		<label class="control-label col-sm-2" for="domain">Domain: </label>
-		<div class="control-label col-sm-10">
+		<div class="col-sm-10">
 			<input class="form-control" type="text" id="domain" placeholder="yahoo.com"/>
 		</div>
-		
-		<button type="button" class="btn btn-primary" id="findEmailsButton">Find Emails</button>
+		<div class="col-sm-offset-2 col-sm-10">
+			<button type="button" class="btn btn-primary" id="findEmailsButton">Find Emails</button>
+		</div>
 	</form>
 </div>
 <hr />
@@ -54,11 +55,6 @@
 		  </tr>
 		</thead>
 		<tbody>
-		  <tr>
-			<td>John</td>
-			<td>Doe</td>
-			<td>john@example.com</td>
-		  </tr>
 		</tbody>
   </table>
 </div>

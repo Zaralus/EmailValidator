@@ -24,11 +24,11 @@ email verification through use of CSV file.
 	<form role="form" class="form-horizontal" action="{% url 'index' %}" method="post">
 		{% csrf_token %}
 		<p>This button will save the API Key entered as the default key to use.</p>
-		<label class="control-label col-sm-1" for="apiKey">API Key</label>
-		<div class="control-label col-sm-9">
+		<label class="control-label col-sm-2" for="apiKey">API Key</label>
+		<div class="col-sm-8">
 			<input type="text" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
 		</div>
-		<div class="control-label col-sm-2">
+		<div class="col-sm-2">
 			<input class="btn btn-primary" type="submit" value="Save As Default API Key">
 		</div>
 	</form>

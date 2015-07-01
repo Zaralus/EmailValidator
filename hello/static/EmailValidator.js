@@ -142,15 +142,15 @@ function processPerson( rawPerson ) {
 	apiKey = $("#apiKey").val();
 
 	var person = {};
-	person.fn = rawPerson.firstName;
+	person.fn = rawPerson.firstName.toLowerCase();;
 	person.fi = person.fn.substr(0,1);
 	person.mn = '';
 	person.mi = '';
-	person.ln = rawPerson.lastName;
+	person.ln = rawPerson.lastName.toLowerCase();;
 	person.li = person.ln.substr(0,1);
 	person.domains = ['gmail.com']
 	if (rawPerson.domain) {
-		person.domains.push(rawPerson.domain);
+		person.domains.push(rawPerson.domain.toLowerCase(););
 	}
 			
 	var foundValidEmail = false;
@@ -177,7 +177,7 @@ function processPerson( rawPerson ) {
 	}
 	else {
 		// No valid email found so write in person with 'N/A'
-		outputData.push([person.fn, person.ln, rawPerson.domain, 'N/A']);
+		outputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase();, 'N/A']);
 	}
 	
 	return outputData;
