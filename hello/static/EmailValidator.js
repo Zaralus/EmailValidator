@@ -167,7 +167,7 @@ function processPerson( rawPerson ) {
 			email = email + '@' + currDomain;
 			if ( isValidEmail(email) ) {
 				foundValidEmail = true;
-				outputData.push(person.fn, person.ln, currDomain, email]);
+				outputData.push([person.fn, person.ln, currDomain, email]);
 			}
 		}
 	}
