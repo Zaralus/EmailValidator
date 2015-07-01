@@ -112,9 +112,10 @@ function isValidEmail( email ) {
 	}
 	
 	xmlhttp.open("GET", url, false);
-	xmlhttp.send();
+	//xmlhttp.send();
 	
-	return result;
+	//return result;
+	return true;
 }
 
 function updateProgressBar( value ) {
@@ -156,20 +157,52 @@ function processPerson( rawPerson ) {
 	}
 			
 	var foundValidEmail = false;
+	var firstNamePoss = [];
+	var lastNamePoss = [];
 	for (var i in person.domains) {
 		var currDomain = person.domains[i];
 				
 		for (var j in perms) {
-			var email = perms[j].replace('{fn}', person.fn)
-			email = email.replace('{fi}', person.fi)
-			email = email.replace('{mn}', person.mn)
-			email = email.replace('{mi}', person.mi)
-			email = email.replace('{ln}', person.ln)
-			email = email.replace('{li}', person.li)
-			email = email + '@' + currDomain;
-			if ( isValidEmail(email) ) {
-				foundValidEmail = true;
-				currOutputData.push([person.fn, person.ln, currDomain, email]);
+		
+			// Deal with first names containing white space
+			if (hasWhiteSpace(person.fn)){
+				firstNamePoss.push( person.fn.replace(' ','.') );
+				firstNamePoss.push( person.fn.replace(' ','-') );
+				firstNamePoss.push( person.fn.replace(' ','_') );
+				firstNamePoss.push( person.fn.replace(' ','') );
+			}
+			else {
+				firstNamePoss = [person.fn];
+			}
+			
+			// Deal with last names containing white space
+			if (hasWhiteSpace(person.ln)){
+				lastNamePoss.push( person.ln.replace(' ','.') );
+				lastNamePoss.push( person.ln.replace(' ','-') );
+				lastNamePoss.push( person.ln.replace(' ','_') );
+				lastNamePoss.push( person.ln.replace(' ','') );
+			}
+			else {
+				lastNamePoss = [person.ln];
+			}
+			
+			for (var m in firstNamePoss) {
+				for (var n in lastNamePoss) {
+					firstName = firstNamePoss[m];
+					lastName = lastNamePoss[n];
+					
+					var email = perms[j].replace('{fn}', firstName)
+					email = email.replace('{fi}', person.fi)
+					email = email.replace('{mn}', person.mn)
+					email = email.replace('{mi}', person.mi)
+					email = email.replace('{ln}', lastName)
+					email = email.replace('{li}', person.li)
+					email = email + '@' + currDomain;
+					if ( isValidEmail(email) ) {
+						foundValidEmail = true;
+						currOutputData.push([person.fn, person.ln, currDomain, email]);
+					}
+				}
 			}
 		}
 	}
@@ -215,4 +248,8 @@ function processInputCSV( evt ) {
 		outputCSV( outputData );
     };
     reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
+}
+
+function hasWhiteSpace(s) {
+  return s.indexOf(' ') >= 0;
 }
