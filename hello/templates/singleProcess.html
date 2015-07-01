@@ -10,6 +10,8 @@
 
 {% block content %}
 
+<h1 class="text-warning">Single Person Email Verification</h1>
+
 <div>
 	<p><span><strong>API Key: </strong></span><span class="text-primary">{{apiKey}}</span></p>
 </div>
@@ -34,12 +36,29 @@
 			<input class="form-control" type="text" id="domain" placeholder="yahoo.com"/>
 		</div>
 		
-		<input class="btn btn-primary" type="submit" value="Find Emails">
+		<button type="button" class="btn btn-primary" id="findEmailsButton" value="Find Emails">
 	</form>
 </div>
 <hr />
+<h2 class="text-warning">Results</h2>
 <div id="results">
-
+	<table id="resultsTable" class="table table-hover">
+		<thead>
+		  <tr>
+			<th>Firstname</th>
+			<th>Lastname</th>
+			<th>Domain</th>
+			<th>Email</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>John</td>
+			<td>Doe</td>
+			<td>john@example.com</td>
+		  </tr>
+		</tbody>
+  </table>
 </div>
 
 

@@ -6,6 +6,7 @@ $(document).ready(function() {
 	loadEmailPermutations();
 	
 	$('#startButton').click( processInputCSV );
+	$('#findEmailsButton').click( processSinglePerson );
 	
 });
 
@@ -122,21 +123,34 @@ function updateProgressBar( value ) {
 	$("#status").html(value.toString() + "% Complete");
 }
 
-function processPerson( person ) {
+function processSinglePerson( evt ) {
+	rawPerson = {};
+	rawPerson.firstName = $('#firstName').val();
+	rawPerson.lastName = $('#lastName').val();
+	rawPerson.domain = $('#domain').val();
+	
+	data = processPerson( rawPerson );
+	
+	for (row in data) {
+		$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
+	}
+}
+
+function processPerson( rawPerson ) {
 
 	// Load API Key
 	apiKey = $("#apiKey").val();
 
 	var person = {};
-	person.fn = data[row][0].trim();
+	person.fn = rawPerson.firstName;
 	person.fi = person.fn.substr(0,1);
 	person.mn = '';
 	person.mi = '';
-	person.ln = data[row][1].trim();
+	person.ln = rawPerson.lastName;
 	person.li = person.ln.substr(0,1);
 	person.domains = ['gmail.com']
-	if (data[row][2].trim()) {
-		person.domains.push(data[row][2]);
+	if (rawPerson.domain) {
+		person.domains.push(rawPerson.domain);
 	}
 			
 	var foundValidEmail = false;
@@ -174,6 +188,8 @@ function processInputCSV( evt ) {
 	// Load API Key
 	apiKey = $("#apiKey").val();
 	
+	outputData = [];
+	
     var reader = new FileReader();
     reader.readAsText(file);
     reader.onload = function(event){
@@ -189,46 +205,15 @@ function processInputCSV( evt ) {
 			if (row == 0) {
 				continue;
 			}
+			
+			rawPerson = {};
+			rawPerson.firstName = data[row][0].trim();
+			rawPerson.lastName = data[row][1].trim();
+			rawPerson.domain = data[row][2].trim();
+			currOutputData = processPerson( rawPerson );
+			
+			outputData.extend(currOutputData);
 		
-			var person = {};
-			person.fn = data[row][0].trim();
-			person.fi = person.fn.substr(0,1);
-			person.mn = '';
-			person.mi = '';
-			person.ln = data[row][1].trim();
-			person.li = person.ln.substr(0,1);
-			person.domains = ['gmail.com']
-			if (data[row][2].trim()) {
-				person.domains.push(data[row][2]);
-			}
-			
-			var foundValidEmail = false;
-			for (var i in person.domains) {
-				var currDomain = person.domains[i];
-				
-				for (var j in perms) {
-					var email = perms[j].replace('{fn}', person.fn)
-					email = email.replace('{fi}', person.fi)
-					email = email.replace('{mn}', person.mn)
-					email = email.replace('{mi}', person.mi)
-					email = email.replace('{ln}', person.ln)
-					email = email.replace('{li}', person.li)
-					email = email + '@' + currDomain;
-					if ( isValidEmail(email) ) {
-						foundValidEmail = true;
-						outputData.push([data[row][0], data[row][1], currDomain, email]);
-					}
-				}
-			}
-			
-			if (foundValidEmail) {
-				foundValidEmail = false;
-			}
-			else {
-				// No valid email found so write in person with 'N/A'
-				outputData.push([data[row][0], data[row][1], data[row][2], 'N/A']);
-			}
-			
 			// Write blank row between each person
 			outputData.push(['', '', '', '']);
 		}

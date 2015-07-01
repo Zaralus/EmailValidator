@@ -13,21 +13,36 @@
 {% if error_message %}<div class="alert alert-danger"><strong>{{ error_message }}</strong></div>{% endif %}
 {% if success_message %}<div class="alert alert-success"><strong>{{ success_message }}</strong></div>{% endif %}
 
+<h1>Email Verification Application"</h1>
+
+<p> This app allows you to manage your api key, do single person email verification, or do bulk person
+email verification through use of CSV file.
+</p>
+
+<h2 class="text-warning">API Key Maintenance</h2>
 <div>
-	<form action="{% url 'index' %}" method="post">
-		{% csrf_token %} 
-		<label for="apiKey">API Key</label>
+	<form role="form" class="form-horizontal" action="{% url 'index' %}" method="post">
+		{% csrf_token %}
 		<p>This button will save the API Key entered as the default key to use.</p>
-		<input type="text" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
-		<input class="btn btn-primary" type="submit" value="Save As Default API Key">
+		<label class="control-label col-sm-2" for="apiKey">API Key</label>
+		<div class="control-label col-sm-7">
+			<input type="text" name="apiKey" id="apiKey" size="70" value="{{ apiKey }}"/>
+		</div>
+		<div class="control-label col-sm-3">
+			<input class="btn btn-primary" type="submit" value="Save As Default API Key">
+		</div>
 	</form>
 </div>
 <hr />
+
+<h2 class="text-warning">Single Person Email Verification</h2>
 <div>
 	<p>Use this link if you just wish to find valid emails for a single person at a time.</p>
 	<a href="{% url 'singleprocess' %}">Single Person Process</a>
 </div>
 <hr />
+
+<h2 class="text-warning">Bulk Person Email Verification</h2>
 <div>
 	<p>Use this link to process all people in a CSV file of the format <b>firstname, lastname, domain</b>.</p>
 	<a href="{% url 'bulkprocess' %}">CSV File Process</a>
@@ -35,22 +50,6 @@
 </div>
 <hr />
 <hr />
-
-<div id=inputs class=clearfix>
-  <input type=file id=files name=files[] multiple />
-</div>
-<hr />
-<output id=list>
-</output>
-<hr />
-<input type="button" id="startButton" value="Execute Batch" />
-<hr />
-<div class="progress">
-  <div id="status" class="progress-bar progress-bar-success active" role="progressbar" aria-valuenow="0"
-  aria-valuemin="0" aria-valuemax="100" style="width:0%">
-    0% Complete (success)
-  </div>
-</div>
 
 <!--
 <div>
