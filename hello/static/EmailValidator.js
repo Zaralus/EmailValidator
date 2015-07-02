@@ -102,7 +102,7 @@ function isValidEmail( email ) {
 	var xmlhttp = new XMLHttpRequest();
 	var url = "https://gentle-sierra-2295.herokuapp.com/isvalidemail?email=" + email + "&apikey=" + apiKey;
 	
-	var result;
+	var result = {};
 	result.hasError = false;
 	result.message = '';
 	result.success = false;
