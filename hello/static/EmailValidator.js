@@ -286,7 +286,7 @@ function processInputCSV( evt ) {
 				clearInterval(interval);
 			}
 			
-			var currProgress = Math.round(row / data.length) * 100);
+			var currProgress = Math.round((row / data.length) * 100);
 			updateProgressBar( currProgress );
 			
 		}, delay);
