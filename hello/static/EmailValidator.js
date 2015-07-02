@@ -239,22 +239,22 @@ function processInputCSV( evt ) {
 			updateProgressBar( currProgress );
 		
 			// Skip header row of input CSV file
-			if (row == 0) {
-				continue;
+			if (row != 0) {
+				rawPerson = {};
+				rawPerson.firstName = data[row][0].trim();
+				rawPerson.lastName = data[row][1].trim();
+				rawPerson.domain = data[row][2].trim();
+				var currOutputData = processPerson( rawPerson );
+				
+				Array.prototype.push.apply(outputData, currOutputData);
+			
+				// Write blank row between each person
+				outputData.push(['', '', '', '']);
 			}
 			
-			rawPerson = {};
-			rawPerson.firstName = data[row][0].trim();
-			rawPerson.lastName = data[row][1].trim();
-			rawPerson.domain = data[row][2].trim();
-			var currOutputData = processPerson( rawPerson );
+
 			
-			Array.prototype.push.apply(outputData, currOutputData);
-		
-			// Write blank row between each person
-			outputData.push(['', '', '', '']);
-			
-			if ( ++i >= data.length ) {
+			if ( ++row >= data.length ) {
 				clearInterval(interval);
 			}
 			
