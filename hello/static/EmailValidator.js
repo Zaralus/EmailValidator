@@ -8,6 +8,8 @@ $(document).ready(function() {
 	$('#startButton').click( processInputCSV );
 	$('#findEmailsButton').click( processSinglePerson );
 	
+	$('#status').css("transition","none");
+	
 });
 
 var apiKey = "";
@@ -231,7 +233,7 @@ function processInputCSV( evt ) {
 		var csv = event.target.result;
 		var data = $.csv.toArrays(csv);
 	  
-		var delay = 800;
+		var delay = 50;
 		var row = 0;
 		var interval = setInterval(function() {
 		
@@ -255,6 +257,7 @@ function processInputCSV( evt ) {
 
 			
 			if ( ++row >= data.length ) {
+				outputCSV( outputData );
 				clearInterval(interval);
 			}
 			
@@ -284,7 +287,6 @@ function processInputCSV( evt ) {
 		}
 		*/
 		
-		outputCSV( outputData );
     };
     reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
 }
