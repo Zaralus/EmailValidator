@@ -111,7 +111,6 @@ function isValidEmail( email ) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var jsonData = JSON.parse(xmlhttp.responseText);
 			if (jsonData.success == "false") {
-				handleError("QuickEmailVerification Error: " + jsonData.message);
 				result.hasError = true;
 				result.message = jsonData.message;
 				return result;
@@ -222,7 +221,7 @@ function processPerson( rawPerson ) {
 					result = isValidEmail(email);
 					if ( result.hasError ) {
 						// Error occurred, stop everything and just return data we have so far
-						handleError(result.message);
+						handleError("QuickEmailVerification Error: " + result.message);
 						hasError = true;
 						return currOutputData;
 					}
