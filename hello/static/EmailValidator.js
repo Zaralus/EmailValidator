@@ -320,7 +320,7 @@ function processInputCSV( evt ) {
 		*/
 		
     };
-    reader.onerror = function(){ handleError('Unable to read ' + file.fileName) + '. Is your CSV file properly formatted?'); };
+    reader.onerror = function(){ handleError('Unable to read ' + file.fileName + '. Is your CSV file properly formatted?'); };
 }
 
 function hasWhiteSpace(s) {
