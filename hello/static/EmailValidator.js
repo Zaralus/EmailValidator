@@ -116,7 +116,7 @@ function isValidEmail( email ) {
 				return result;
 			}
 			if (jsonData.result == "valid") {
-				result = true;
+				result.success = true;
 			}
 		}
 	}

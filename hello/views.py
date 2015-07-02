@@ -59,7 +59,7 @@ def isvalidemail(request):
     try:
         jsonData = json.load(urllib2.urlopen( url ))
     except urllib2.URLError as e:
-        jsonData = {"success":"false","message":e.reason}
+        jsonData = json.load('{"success":"false","message":e.reason}')
     return JsonResponse(jsonData)
 
 def db(request):
