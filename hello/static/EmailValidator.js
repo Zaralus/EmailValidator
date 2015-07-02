@@ -231,6 +231,36 @@ function processInputCSV( evt ) {
 		var csv = event.target.result;
 		var data = $.csv.toArrays(csv);
 	  
+		var delay = 800;
+		var row = 0;
+		var interval = setInterval(function() {
+		
+			var currProgress = Math.round(((row + 1) / data.length) * 100);
+			updateProgressBar( currProgress );
+		
+			// Skip header row of input CSV file
+			if (row == 0) {
+				continue;
+			}
+			
+			rawPerson = {};
+			rawPerson.firstName = data[row][0].trim();
+			rawPerson.lastName = data[row][1].trim();
+			rawPerson.domain = data[row][2].trim();
+			var currOutputData = processPerson( rawPerson );
+			
+			Array.prototype.push.apply(outputData, currOutputData);
+		
+			// Write blank row between each person
+			outputData.push(['', '', '', '']);
+			
+			if ( ++i >= data.length ) {
+				clearInterval(interval);
+			}
+			
+		}, delay);
+		
+		/*
 		for (var row in data) {
 		
 			var currProgress = Math.round(((row + 1) / data.length) * 100);
@@ -252,6 +282,7 @@ function processInputCSV( evt ) {
 			// Write blank row between each person
 			outputData.push(['', '', '', '']);
 		}
+		*/
 		
 		outputCSV( outputData );
     };
