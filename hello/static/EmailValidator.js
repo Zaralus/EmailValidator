@@ -259,9 +259,6 @@ function processInputCSV( evt ) {
 		var row = 0;
 		var interval = setInterval(function() {
 		
-			var currProgress = Math.round(((row + 1) / data.length) * 100);
-			updateProgressBar( currProgress );
-		
 			// Skip header row of input CSV file
 			if (row != 0) {
 				rawPerson = {};
@@ -278,7 +275,9 @@ function processInputCSV( evt ) {
 			
 			if (hasError) {
 				// Output the data we have at least so we didn't waste credits
-				outputCSV( outputData );
+				if (outputData.length > 0) {
+					outputCSV( outputData );
+				}
 				clearInterval(interval);
 				hasError = false;
 			}
@@ -286,6 +285,9 @@ function processInputCSV( evt ) {
 				outputCSV( outputData );
 				clearInterval(interval);
 			}
+			
+			var currProgress = Math.round(row / data.length) * 100);
+			updateProgressBar( currProgress );
 			
 		}, delay);
 		
