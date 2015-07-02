@@ -244,6 +244,8 @@ function processPerson( rawPerson ) {
   
 function processInputCSV( evt ) {
 
+	outputData = [];
+
 	if (file.size > 32000) {
 		handleError("File Too Large: Maximum file size is 32,000 bytes (i.e. ~1200 rows of data)");
 		return;
@@ -260,18 +262,17 @@ function processInputCSV( evt ) {
 		var interval = setInterval(function() {
 		
 			// Skip header row of input CSV file
-			if (row != 0) {
-				rawPerson = {};
-				rawPerson.firstName = data[row][0].trim();
-				rawPerson.lastName = data[row][1].trim();
-				rawPerson.domain = data[row][2].trim();
-				var currOutputData = processPerson( rawPerson );
-				
-				Array.prototype.push.apply(outputData, currOutputData);
-			
-				// Write blank row between each person
-				outputData.push(['', '', '', '']);
+			if (row == 0) {
+				return;
 			}
+			
+			rawPerson = {};
+			rawPerson.firstName = data[row][0].trim();
+			rawPerson.lastName = data[row][1].trim();
+			rawPerson.domain = data[row][2].trim();
+			var currOutputData = processPerson( rawPerson );
+				
+			Array.prototype.push.apply(outputData, currOutputData);
 			
 			if (hasError) {
 				// Output the data we have at least so we didn't waste credits
@@ -285,6 +286,9 @@ function processInputCSV( evt ) {
 				outputCSV( outputData );
 				clearInterval(interval);
 			}
+			
+			// Write blank row between each person
+			outputData.push(['', '', '', '']);
 			
 			var currProgress = Math.round((row / data.length) * 100);
 			updateProgressBar( currProgress );
