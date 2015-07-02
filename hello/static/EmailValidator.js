@@ -227,7 +227,7 @@ function processPerson( rawPerson ) {
 					}
 					else if (result.success){
 						foundValidEmail = true;
-						currOutputData.push([person.fn, person.ln, currDomain, email]);
+						currOutputData.push([rawPerson.firstName, rawPerson.lastName, currDomain, email]);
 					}
 				}
 			}
@@ -236,7 +236,7 @@ function processPerson( rawPerson ) {
 			
 	if (!foundValidEmail) {
 		// No valid email found so write in person with 'N/A'
-		currOutputData.push([person.fn, person.ln, rawPerson.domain.toLowerCase(), 'N/A']);
+		currOutputData.push([rawPerson.firstName, rawPerson.lastName, rawPerson.domain.toLowerCase(), 'N/A']);
 	}
 	
 	return currOutputData;
