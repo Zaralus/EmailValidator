@@ -17,6 +17,7 @@ var perms = [];
 var outputData = [];
 var file;
 var qev;
+var hasError = false;
 
 function isAPIAvailable() {
     // Check for the various File API support.
@@ -101,11 +102,20 @@ function isValidEmail( email ) {
 	var xmlhttp = new XMLHttpRequest();
 	var url = "https://gentle-sierra-2295.herokuapp.com/isvalidemail?email=" + email + "&apikey=" + apiKey;
 	
-	var result = false;
+	var result;
+	result.hasError = false;
+	result.message = '';
+	result.success = false;
 
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var jsonData = JSON.parse(xmlhttp.responseText);
+			if (jsonData.success == "false") {
+				handleError("QuickEmailVerification Error: " + jsonData.message);
+				result.hasError = true;
+				result.message = jsonData.message;
+				return result;
+			}
 			if (jsonData.result == "valid") {
 				result = true;
 			}
@@ -113,17 +123,18 @@ function isValidEmail( email ) {
 	}
 	
 	xmlhttp.open("GET", url, false);
-	//xmlhttp.send();
+	xmlhttp.send();
 	
-	//return result;
+	return result;
 	
-	/* For  load testing only */
+	/* For  load testing only 
 	if (Math.random() < 0.4) {
 		return true;
 	}
 	else {
 		return false;
 	}
+	*/
 }
 
 function updateProgressBar( value ) {
@@ -208,7 +219,14 @@ function processPerson( rawPerson ) {
 					email = email.replace('{li}', person.li)
 					email = email + '@' + currDomain;
 							
-					if ( isValidEmail(email) ) {
+					result = isValidEmail(email);
+					if ( result.hasError ) {
+						// Error occurred, stop everything and just return data we have so far
+						handleError(result.message);
+						hasError = true;
+						return currOutputData;
+					}
+					else if (result.success){
 						foundValidEmail = true;
 						currOutputData.push([person.fn, person.ln, currDomain, email]);
 					}
@@ -226,6 +244,11 @@ function processPerson( rawPerson ) {
 }
   
 function processInputCSV( evt ) {
+
+	if (file.size > 32000) {
+		handleError("File Too Large: Maximum file size is 32,000 bytes (i.e. ~1200 rows of data)");
+		return;
+	}
 	
     var reader = new FileReader();
     reader.readAsText(file);
@@ -233,7 +256,7 @@ function processInputCSV( evt ) {
 		var csv = event.target.result;
 		var data = $.csv.toArrays(csv);
 	  
-		var delay = 5;
+		var delay = 3;
 		var row = 0;
 		var interval = setInterval(function() {
 		
@@ -254,7 +277,12 @@ function processInputCSV( evt ) {
 				outputData.push(['', '', '', '']);
 			}
 			
-
+			if (hasError) {
+				// Output the data we have at least so we didn't waste credits
+				outputCSV( outputData );
+				clearInterval(interval);
+				hasError = false;
+			}
 			
 			if ( ++row >= data.length ) {
 				outputCSV( outputData );
@@ -293,4 +321,9 @@ function processInputCSV( evt ) {
 
 function hasWhiteSpace(s) {
   return s.indexOf(' ') >= 0;
+}
+
+function handleError( msg ) {
+	errorMsg = '<div class="alert alert-danger"><strong>' + msg + '</strong></div>';
+	$("#messages").html(errorMsg);
 }
