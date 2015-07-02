@@ -282,8 +282,7 @@ function processInputCSV( evt ) {
 				clearInterval(interval);
 				hasError = false;
 			}
-			
-			if ( ++row >= data.length ) {
+			else if ( ++row >= data.length ) {
 				outputCSV( outputData );
 				clearInterval(interval);
 			}
