@@ -118,7 +118,7 @@ function isValidEmail( email ) {
 	//return result;
 	
 	/* For  load testing only */
-	if (Math.random() < 0.2) {
+	if (Math.random() < 0.4) {
 		return true;
 	}
 	else {
@@ -233,7 +233,7 @@ function processInputCSV( evt ) {
 		var csv = event.target.result;
 		var data = $.csv.toArrays(csv);
 	  
-		var delay = 10;
+		var delay = 5;
 		var row = 0;
 		var interval = setInterval(function() {
 		

@@ -12,6 +12,8 @@
 
 <h1 class="text-warning">Bulk Person Email Verification</h1>
 
+{% if error_message %}<div class="alert alert-danger"><strong>{{ error_message }}</strong></div>{% endif %}
+
 <div>
 	<p><span><strong>API Key: </strong></span><span class="text-primary">{{apiKey}}</span></p>
 	<input type="hidden" id="apiKey" value="{{apiKey}}"></input>
