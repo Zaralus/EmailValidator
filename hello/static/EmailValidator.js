@@ -255,7 +255,14 @@ function processInputCSV( evt ) {
     reader.readAsText(file);
     reader.onload = function(event){
 		var csv = event.target.result;
-		var data = $.csv.toArrays(csv);
+		
+		try {
+			var data = $.csv.toArrays(csv);
+		}
+		catch(err) {
+			handleError("Unable to load file: " + err.message);
+			return;
+		}
 	  
 		var delay = 3;
 		var row = 0;
