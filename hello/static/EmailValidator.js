@@ -270,6 +270,7 @@ function processInputCSV( evt ) {
 		
 			// Skip header row of input CSV file
 			if (row == 0) {
+				row++;
 				return;
 			}
 			
