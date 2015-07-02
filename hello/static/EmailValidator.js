@@ -233,7 +233,7 @@ function processInputCSV( evt ) {
 		var csv = event.target.result;
 		var data = $.csv.toArrays(csv);
 	  
-		var delay = 50;
+		var delay = 10;
 		var row = 0;
 		var interval = setInterval(function() {
 		
