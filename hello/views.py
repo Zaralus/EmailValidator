@@ -56,7 +56,10 @@ def isvalidemail(request):
     apiKey = request.GET.get('apikey');
 
     url = "http://api.quickemailverification.com/v1/verify?email=" + email + "&apikey=" + apiKey
-    jsonData = json.load(urllib2.urlopen( url ))
+    try:
+        jsonData = json.load(urllib2.urlopen( url ))
+    except urllib2.URLError as e:
+        jsonData = {"success":"false","message":e.reason}
     return JsonResponse(jsonData)
 
 def db(request):
