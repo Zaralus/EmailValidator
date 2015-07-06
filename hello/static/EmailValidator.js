@@ -128,11 +128,14 @@ function isValidEmail( email ) {
 	
 	/* For  load testing only */
 	if (Math.random() < 0.4) {
-		return true;
+		result.hasError = false;
+		result.success = true;
 	}
 	else {
-		return false;
+		result.hasError = false;
+		result.success = false;
 	}
+	return false;
 
 }
 
