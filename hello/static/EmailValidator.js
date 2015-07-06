@@ -222,12 +222,12 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 				currOutputData.push([rawPerson.firstName, rawPerson.lastName, rawPerson.domain.toLowerCase(), 'N/A']);
 			}
 			
-			for (row in data) {
+			for (row in currOutputData) {
 				/*
 					$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
 				*/
 							
-				$('#resultsTable tbody').append("<tr><td>" + data[row][3] + "</td></tr>");
+				$('#resultsTable tbody').append("<tr><td>" + currOutputData[row][3] + "</td></tr>");
 			}
 			clearInterval(interval);
 		}
