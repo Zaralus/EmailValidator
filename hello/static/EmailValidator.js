@@ -135,7 +135,7 @@ function isValidEmail( email ) {
 		result.hasError = false;
 		result.success = false;
 	}
-	return false;
+	return result;
 
 }
 
@@ -225,6 +225,7 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 				currOutputData.push([rawPerson.firstName, rawPerson.lastName, rawPerson.domain.toLowerCase(), 'N/A']);
 			}
 			
+			$("resultsTable").find("tr").remove();
 			for (row in currOutputData) {
 				/*
 					$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
