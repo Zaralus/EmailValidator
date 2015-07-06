@@ -275,7 +275,7 @@ function processPerson( rawPerson, singleProcess ) {
 			
 			var firstNamePoss = [];
 			var lastNamePoss = [];
-			var currDomain = person.domains[domainInd];
+			var currDomain = person.domains[i];
 			
 			for (var j in perms) {
 				
