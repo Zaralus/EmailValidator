@@ -309,16 +309,7 @@ function processPerson( rawPerson, singleProcess ) {
 						email = email.replace('{li}', person.li)
 						email = email + '@' + currDomain;
 								
-						if (singleProcess) {
-							var interval = setInterval(function() {
-								result = isValidEmail(email);
-								c
-								updateProgressBar( currValue );
-							}
-						}
-						else {
-							result = isValidEmail(email);
-						}
+						result = isValidEmail(email);
 						
 						if ( result.hasError ) {
 							// Error occurred, stop everything and just return data we have so far
