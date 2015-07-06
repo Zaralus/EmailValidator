@@ -3,11 +3,7 @@ function loadEmailPermutations() {
 		"{fn}",
 		"{ln}",
 		"{fn}{ln}",
-		"{fn}.{ln}"
-	]
-}
-		
-		/*
+		"{fn}.{ln}",
 		"{fi}{ln}",
 		"{fi}.{ln}",
 		"{fn}{li}",
@@ -40,4 +36,3 @@ function loadEmailPermutations() {
 		"{li}_{fi}"
 	]
 }
-*/
