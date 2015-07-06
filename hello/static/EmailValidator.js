@@ -342,6 +342,9 @@ function processPerson( rawPerson, singleProcess ) {
   
 function processInputCSV( evt ) {
 
+	// Clear any old error messsages
+	removeErrorMsgs()
+
 	outputData = [];
 
 	if (file.size > 32000) {
@@ -433,7 +436,11 @@ function hasWhiteSpace(s) {
   return s.indexOf(' ') >= 0;
 }
 
+function removeErrorMsgs() {
+	$("#errorDiv").remove();
+}
+
 function handleError( msg ) {
-	errorMsg = '<div class="alert alert-danger"><strong>' + msg + '</strong></div>';
+	errorMsg = '<div id="errorDiv" class="alert alert-danger"><strong>' + msg + '</strong></div>';
 	$("#messages").html(errorMsg);
 }
