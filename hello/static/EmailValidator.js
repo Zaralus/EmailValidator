@@ -147,9 +147,9 @@ function updateProgressBar( value ) {
 
 function processSinglePerson( evt ) {
 	rawPerson = {};
-	rawPerson.firstName = $('#firstName').val();
-	rawPerson.lastName = $('#lastName').val();
-	rawPerson.domain = $('#domain').val();
+	rawPerson.firstName = $('#firstName').val().trim();
+	rawPerson.lastName = $('#lastName').val().trim();
+	rawPerson.domain = $('#domain').val().trim();
 	
 	processPerson( rawPerson, true );
 }
@@ -170,10 +170,10 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 				
 			// Deal with first names containing white space
 			if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > -1) ){
-				firstNamePoss.push( person.fn.replace(' ','.') );
-				firstNamePoss.push( person.fn.replace(' ','-') );
-				firstNamePoss.push( person.fn.replace(' ','_') );
-				firstNamePoss.push( person.fn.replace(' ','') );
+				firstNamePoss.push( person.fn.replace(/\s+/g,'.') );
+				firstNamePoss.push( person.fn.replace(/\s+/g,'-') );
+				firstNamePoss.push( person.fn.replace(/\s+/g,'_') );
+				firstNamePoss.push( person.fn.replace(/\s+/g,'') );
 			}
 			else {
 				firstNamePoss = [person.fn];
@@ -181,10 +181,10 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 			
 			// Deal with last names containing white space
 			if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > -1) ){
-				lastNamePoss.push( person.ln.replace(' ','.') );
-				lastNamePoss.push( person.ln.replace(' ','-') );
-				lastNamePoss.push( person.ln.replace(' ','_') );
-				lastNamePoss.push( person.ln.replace(' ','') );
+				lastNamePoss.push( person.ln.replace(/\s+/g,'.') );
+				lastNamePoss.push( person.ln.replace(/\s+/g,'-') );
+				lastNamePoss.push( person.ln.replace(/\s+/g,'_') );
+				lastNamePoss.push( person.ln.replace(/\s+/g,'') );
 			}
 			else {
 				lastNamePoss = [person.ln];
@@ -225,7 +225,7 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 				currOutputData.push([rawPerson.firstName, rawPerson.lastName, rawPerson.domain.toLowerCase(), 'N/A']);
 			}
 			
-			$("resultsTable").find("tr").remove();
+			$("#resultsTable").find("tr").remove();
 			for (row in currOutputData) {
 				/*
 					$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
@@ -281,10 +281,10 @@ function processPerson( rawPerson, singleProcess ) {
 				
 				// Deal with first names containing white space
 				if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > -1) ){
-					firstNamePoss.push( person.fn.replace(' ','.') );
-					firstNamePoss.push( person.fn.replace(' ','-') );
-					firstNamePoss.push( person.fn.replace(' ','_') );
-					firstNamePoss.push( person.fn.replace(' ','') );
+					firstNamePoss.push( person.fn.replace(/\s+/g,'.') );
+					firstNamePoss.push( person.fn.replace(/\s+/g,'-') );
+					firstNamePoss.push( person.fn.replace(/\s+/g,'_') );
+					firstNamePoss.push( person.fn.replace(/\s+/g,'') );
 				}
 				else {
 					firstNamePoss = [person.fn];
@@ -292,10 +292,10 @@ function processPerson( rawPerson, singleProcess ) {
 				
 				// Deal with last names containing white space
 				if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > -1) ){
-					lastNamePoss.push( person.ln.replace(' ','.') );
-					lastNamePoss.push( person.ln.replace(' ','-') );
-					lastNamePoss.push( person.ln.replace(' ','_') );
-					lastNamePoss.push( person.ln.replace(' ','') );
+					lastNamePoss.push( person.ln.replace(/\s+/g,'.') );
+					lastNamePoss.push( person.ln.replace(/\s+/g,'-') );
+					lastNamePoss.push( person.ln.replace(/\s+/g,'_') );
+					lastNamePoss.push( person.ln.replace(/\s+/g,'') );
 				}
 				else {
 					lastNamePoss = [person.ln];
