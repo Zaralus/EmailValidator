@@ -167,56 +167,58 @@ function processDomainsForSinglePerson( person ) {
 	
 	var interval = setInterval(function() {
 
-		var firstNamePoss = [];
-		var lastNamePoss = [];
-		var currDomain = person.domains[i];
+		for (var j in perms) {
+			var firstNamePoss = [];
+			var lastNamePoss = [];
+			var currDomain = person.domains[i];
+				
+			// Deal with first names containing white space
+			if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > -1) ){
+				firstNamePoss.push( person.fn.replace(' ','.') );
+				firstNamePoss.push( person.fn.replace(' ','-') );
+				firstNamePoss.push( person.fn.replace(' ','_') );
+				firstNamePoss.push( person.fn.replace(' ','') );
+			}
+			else {
+				firstNamePoss = [person.fn];
+			}
 			
-		// Deal with first names containing white space
-		if ( hasWhiteSpace(person.fn) && (perms[j].indexOf('{fn}') > -1) ){
-			firstNamePoss.push( person.fn.replace(' ','.') );
-			firstNamePoss.push( person.fn.replace(' ','-') );
-			firstNamePoss.push( person.fn.replace(' ','_') );
-			firstNamePoss.push( person.fn.replace(' ','') );
-		}
-		else {
-			firstNamePoss = [person.fn];
-		}
-		
-		// Deal with last names containing white space
-		if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > -1) ){
-			lastNamePoss.push( person.ln.replace(' ','.') );
-			lastNamePoss.push( person.ln.replace(' ','-') );
-			lastNamePoss.push( person.ln.replace(' ','_') );
-			lastNamePoss.push( person.ln.replace(' ','') );
-		}
-		else {
-			lastNamePoss = [person.ln];
-		}
-		
-		for (var m in firstNamePoss) {
-			for (var n in lastNamePoss) {
-				firstName = firstNamePoss[m];
-				lastName = lastNamePoss[n];
-				
-				var email = perms[j].replace('{fn}', firstName)
-				email = email.replace('{fi}', person.fi)
-				email = email.replace('{mn}', person.mn)
-				email = email.replace('{mi}', person.mi)
-				email = email.replace('{ln}', lastName)
-				email = email.replace('{li}', person.li)
-				email = email + '@' + currDomain;
-						
-				result = isValidEmail(email);
-				
-				if ( result.hasError ) {
-					// Error occurred, stop everything and just return data we have so far
-					handleError("QuickEmailVerification Error: " + result.message);
-					hasError = true;
-					return currOutputData;
-				}
-				else if (result.success){
-					foundValidEmail = true;
-					currOutputData.push([rawPerson.firstName, rawPerson.lastName, currDomain, email]);
+			// Deal with last names containing white space
+			if (hasWhiteSpace(person.ln) && (perms[j].indexOf('{ln}') > -1) ){
+				lastNamePoss.push( person.ln.replace(' ','.') );
+				lastNamePoss.push( person.ln.replace(' ','-') );
+				lastNamePoss.push( person.ln.replace(' ','_') );
+				lastNamePoss.push( person.ln.replace(' ','') );
+			}
+			else {
+				lastNamePoss = [person.ln];
+			}
+			
+			for (var m in firstNamePoss) {
+				for (var n in lastNamePoss) {
+					firstName = firstNamePoss[m];
+					lastName = lastNamePoss[n];
+					
+					var email = perms[j].replace('{fn}', firstName)
+					email = email.replace('{fi}', person.fi)
+					email = email.replace('{mn}', person.mn)
+					email = email.replace('{mi}', person.mi)
+					email = email.replace('{ln}', lastName)
+					email = email.replace('{li}', person.li)
+					email = email + '@' + currDomain;
+							
+					result = isValidEmail(email);
+					
+					if ( result.hasError ) {
+						// Error occurred, stop everything and just return data we have so far
+						handleError("QuickEmailVerification Error: " + result.message);
+						hasError = true;
+						return currOutputData;
+					}
+					else if (result.success){
+						foundValidEmail = true;
+						currOutputData.push([rawPerson.firstName, rawPerson.lastName, currDomain, email]);
+					}
 				}
 			}
 		}
