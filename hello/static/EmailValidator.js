@@ -148,15 +148,7 @@ function processSinglePerson( evt ) {
 	rawPerson.lastName = $('#lastName').val();
 	rawPerson.domain = $('#domain').val();
 	
-	data = processPerson( rawPerson, true );
-	
-	for (row in data) {
-	/*
-		$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
-		*/
-		
-		$('#resultsTable tbody').append("<tr><td>" + data[row][3] + "</td></tr>");
-	}
+	processPerson( rawPerson, true );
 }
 
 function processDomainsForSinglePerson( rawPerson, person ) {
@@ -214,7 +206,6 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 						// Error occurred, stop everything and just return data we have so far
 						handleError("QuickEmailVerification Error: " + result.message);
 						hasError = true;
-						return currOutputData;
 					}
 					else if (result.success){
 						foundValidEmail = true;
@@ -224,17 +215,24 @@ function processDomainsForSinglePerson( rawPerson, person ) {
 			}
 		}
 		
-		if ( ++i >= person.domains.length ) {
+		if ( ++i >= person.domains.length || hasError ) {
 		
 			if (!foundValidEmail) {
 				// No valid email found so write in person with 'N/A'
 				currOutputData.push([rawPerson.firstName, rawPerson.lastName, rawPerson.domain.toLowerCase(), 'N/A']);
 			}
-			outputCSV( outputData );
+			
+			for (row in data) {
+				/*
+					$('#resultsTable tbody').append("<tr><td>" + data[row][0] +"</td><td>" + data[row][1] + "</td><td>" + data[row][2] + "</td><td>" + data[row][3] + "</td></tr>");
+				*/
+							
+				$('#resultsTable tbody').append("<tr><td>" + data[row][3] + "</td></tr>");
+			}
 			clearInterval(interval);
 		}
 		
-		var currProgress = Math.round( ((i+1) / person.domains.length) * 100 );
+		var currProgress = Math.round( (i / person.domains.length) * 100 );
 		updateProgressBar( currProgress );
 			
 	}, delay);
