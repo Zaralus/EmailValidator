@@ -122,11 +122,11 @@ function isValidEmail( email ) {
 	}
 	
 	xmlhttp.open("GET", url, false);
-	//xmlhttp.send();
+	xmlhttp.send();
 	
-	//return result;
+	return result;
 	
-	/* For  load testing only */
+	/* For  load testing only 
 	if (Math.random() < 0.4) {
 		result.hasError = false;
 		result.success = true;
@@ -136,6 +136,7 @@ function isValidEmail( email ) {
 		result.success = false;
 	}
 	return result;
+	*/
 
 }
 
