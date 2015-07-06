@@ -159,7 +159,7 @@ function processSinglePerson( evt ) {
 	}
 }
 
-function processDomainsForPerson( person ) {
+function processDomainsForSinglePerson( person ) {
 	
 	var foundValidEmail = false;
 	var delay = 3;
@@ -261,7 +261,7 @@ function processPerson( rawPerson, singleProcess ) {
 	/* Set up interval for when it's a single person process so that we
 		can still have a progress bar but by domain instead of by person */
 	if (singleProcess) {
-		processSingleDomainForPerson( person );
+		processDomainsForSinglePerson( person );
 	}
 	else {
 			
